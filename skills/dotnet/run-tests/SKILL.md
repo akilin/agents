@@ -1,9 +1,9 @@
 ---
-description: Use the token-efficient test runner when running tests
-applyTo: '**'
+name: run-tests
+description: 'Use when running .NET tests. Runs them through the token-efficient `./test.sh` runner instead of `dotnet test`.'
 ---
 
-## Running tests
+# Run Tests
 
 - Run tests from the repository root with `./test.sh <unit|integration|e2e> [filter]`.
 - Do not invoke `dotnet test` directly.
