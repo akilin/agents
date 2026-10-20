@@ -1,0 +1,12 @@
+name: check-names
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  check-names:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - run: bash scripts/check-names.sh

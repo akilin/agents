@@ -1,0 +1,17 @@
+name: dotnet
+version: 1.0.0
+description: .NET clean-architecture conventions and skills.
+dependencies:
+  apm:
+    - ../../instructions/dotnet/dotnet-api.instructions.md
+    - ../../instructions/dotnet/dotnet-csharp.instructions.md
+    - ../../instructions/dotnet/dotnet-csproj.instructions.md
+    - ../../instructions/dotnet/dotnet-domain.instructions.md
+    - ../../instructions/dotnet/dotnet-entities.instructions.md
+    - ../../instructions/dotnet/dotnet-infra.instructions.md
+    - ../../instructions/dotnet/dotnet-integration-tests.instructions.md
+    - ../../instructions/dotnet/dotnet-test-runner.instructions.md
+    - ../../instructions/dotnet/dotnet-tests.instructions.md
+    - ../../skills/dotnet/domain-entity
+    - ../../skills/dotnet/domain-error-code
+    - ../../skills/dotnet/throw-extensions-validation
