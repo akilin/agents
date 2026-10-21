@@ -11,7 +11,7 @@ dependencies:
   - .claude/skills/grill-me/SKILL.md
   deployed_file_hashes:
     .claude/skills/grill-me/LICENSE: sha256:0e7ac423bf2c6e223b7c5b156f8cf72da49d748e56a1641402c31f22ad07dbb5
-    .claude/skills/grill-me/SKILL.md: sha256:6c03744c944a7020a1dccd80822614803a9a195b1be2a29d613d23e4b0c2b61e
+    .claude/skills/grill-me/SKILL.md: sha256:2cb116d06e7201c1b2024662a0e28706c490cd01c8b176b96c2f812607d989db
   source: local
   local_path: ./skills/general/grill-me
 deployments:
@@ -41,4 +41,4 @@ deployments:
   owners:
   - ./skills/general/grill-me
   active_owner: ./skills/general/grill-me
-  content_hash: sha256:6c03744c944a7020a1dccd80822614803a9a195b1be2a29d613d23e4b0c2b61e
+  content_hash: sha256:2cb116d06e7201c1b2024662a0e28706c490cd01c8b176b96c2f812607d989db
