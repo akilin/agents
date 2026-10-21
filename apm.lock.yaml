@@ -1,0 +1,44 @@
+lockfile_version: '1'
+apm_version: 0.34.0
+dependencies:
+- repo_url: _local/grill-me
+  name: grill-me
+  version: unknown
+  package_type: claude_skill
+  deployed_files:
+  - .claude/skills/grill-me
+  - .claude/skills/grill-me/LICENSE
+  - .claude/skills/grill-me/SKILL.md
+  deployed_file_hashes:
+    .claude/skills/grill-me/LICENSE: sha256:0e7ac423bf2c6e223b7c5b156f8cf72da49d748e56a1641402c31f22ad07dbb5
+    .claude/skills/grill-me/SKILL.md: sha256:6c03744c944a7020a1dccd80822614803a9a195b1be2a29d613d23e4b0c2b61e
+  source: local
+  local_path: ./skills/general/grill-me
+deployments:
+- kind: project-relative
+  target: claude
+  value: .claude/skills/grill-me
+  runtime: null
+  scope: project
+  owners:
+  - ./skills/general/grill-me
+  active_owner: ./skills/general/grill-me
+  content_hash: null
+- kind: project-relative
+  target: claude
+  value: .claude/skills/grill-me/LICENSE
+  runtime: null
+  scope: project
+  owners:
+  - ./skills/general/grill-me
+  active_owner: ./skills/general/grill-me
+  content_hash: sha256:0e7ac423bf2c6e223b7c5b156f8cf72da49d748e56a1641402c31f22ad07dbb5
+- kind: project-relative
+  target: claude
+  value: .claude/skills/grill-me/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - ./skills/general/grill-me
+  active_owner: ./skills/general/grill-me
+  content_hash: sha256:6c03744c944a7020a1dccd80822614803a9a195b1be2a29d613d23e4b0c2b61e
