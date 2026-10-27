@@ -94,4 +94,4 @@ See the [APM docs](https://microsoft.github.io/apm/) for everything else.
 
 ## License
 
-[MIT](LICENSE). Skills adapted from elsewhere keep their original license file in their folder.
+[MIT](LICENSE). Skills adapted from elsewhere keep their original license; see [THIRD_PARTY_NOTICES](THIRD_PARTY_NOTICES).
