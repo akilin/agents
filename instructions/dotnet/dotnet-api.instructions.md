@@ -5,7 +5,7 @@ applyTo: 'src/api/**'
 ## API
 
 ### Controllers
-- Controllers inherit `BaseController`, use `[Route("api/[controller]")]` and lowercase URLs. Auth is on by default (`FallbackPolicy = DefaultPolicy`); use `[AllowAnonymous]` to opt out.
+- Controllers inherit `BaseController`, use `[Route("api/[controller]")]` and kebab-case URLs. Auth is on by default (`FallbackPolicy = DefaultPolicy`); use `[AllowAnonymous]` to opt out.
 - Verbs via `[HttpGet]`, `[HttpPost]`, `[HttpPut]`, `[HttpDelete]` with route templates and typed constraints (`{id:int?}`).
 - Controllers always take in DTOs and return DTOs. NEVER return entities from controllers.
 - For errors inside controllers, use `BaseController` helper methods to generate return values.
