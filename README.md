@@ -14,7 +14,7 @@ version: 0.0.0
 targets: [claude, copilot]   # agents to deploy to; drop the one you don't use
 dependencies:
   apm:
-    # .NET clean-architecture conventions: 8 instructions + 4 skills
+    # .NET conventions: 2 instructions
     - akilin/agents/packs/dotnet
     # /grill-me: get interviewed about a plan until it holds up
     - akilin/agents/skills/general/grill-me
@@ -61,32 +61,14 @@ See the [APM docs](https://microsoft.github.io/apm/) for everything else.
 `akilin/agents/packs/dotnet` installs all of the items below.
 
 > [!NOTE]
-> This pack assumes my own project structure:
-> - `src/{api,domain,infra,shared}` and `tests/{unit-tests,integration,e2e}`. The instructions only fire on those paths.
-> - Existing building blocks such as `BaseEntity<TId>`, `BaseController`, `IUnitOfWork`, `ThrowExtensions`, `ErrorCodes`/`ErrorCodeToMessageMapper`, and `TestBase`/`WebAppFactory`.
-> - A `./test.sh <unit|integration|e2e> [filter]` script at the repo root, used by `run-tests`. It is **not** included here; bring your own.
-
-**Skills**
-
-| Name | What it does | Install path |
-|---|---|---|
-| `domain-entity` | Scaffolds a new persisted domain entity with validated creation and update. | `akilin/agents/skills/dotnet/domain-entity` |
-| `domain-error-code` | Adds a domain error code to `ErrorCodes.cs` and its message mapping. | `akilin/agents/skills/dotnet/domain-error-code` |
-| `run-tests` | Runs tests through the token-efficient `./test.sh` instead of `dotnet test`. | `akilin/agents/skills/dotnet/run-tests` |
-| `throw-extensions-validation` | Validates incoming data in the domain layer with `ThrowExtensions`. | `akilin/agents/skills/dotnet/throw-extensions-validation` |
+> This pack assumes my own conventions: central package management via `Directory.Packages.props`, shared settings in `Directory.Build.props`, a `$(RepoRoot)` MSBuild property for project references, and NodaTime for dates and times.
 
 **Instructions** (install path: `akilin/agents/instructions/dotnet/<name>.instructions.md`)
 
 | Name | Applies to | What it covers |
 |---|---|---|
-| `dotnet-api` | `src/api/**` | Thin controllers, DTOs in and out, routing, error helpers. |
-| `dotnet-csharp` | `**/*.cs` | Project layout, naming, NodaTime, general C# style. |
+| `dotnet-csharp` | `**/*.cs` | Use NodaTime types for dates and times. |
 | `dotnet-csproj` | `**/*.{csproj,props}` | Central package management, `Directory.Build.props`, `$(RepoRoot)` references. |
-| `dotnet-domain` | `src/domain/**` | Entities, services, and where business rules live. |
-| `dotnet-entities` | `src/domain/Entities/**` | Entity validation and conventions; links the entity and error-code skills. |
-| `dotnet-infra` | `src/infra/**` | EF Core: unit of work, migrations, entity configurations. |
-| `dotnet-integration-tests` | `tests/integration/**` | `TestBase`, `WebAppFactory`, self-contained tests. |
-| `dotnet-tests` | `tests/**/*.cs` | Test layout, naming, arrange/act/assert. |
 
 ## Credits
 
