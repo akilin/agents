@@ -1,6 +1,6 @@
 ---
 name: grill-me
-description: Grill the user relentlessly about a plan, design, decision, or idea.
+description: Grill the user relentlessly about a plan, design, decision, or idea. Use when user uses any 'grill' trigger phrases.
 ---
 
 Interview the user relentlessly until you reach a shared understanding. Map this as a **design tree**: every decision branches into the decisions that hang off it.
