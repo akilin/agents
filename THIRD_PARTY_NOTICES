@@ -1,4 +1,5 @@
-Some of the skills, like `grill-me`, `tdd`, etc are adapted from https://github.com/mattpocock/skills
+Most if not all of the skills under `skills/general/` and `skills/engineering/` (packaged as the `general` and
+`engineering` packs) are adapted from https://github.com/mattpocock/skills
 and are distributed under the following license:
 
 MIT License

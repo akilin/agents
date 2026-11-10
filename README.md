@@ -54,16 +54,16 @@ See the [APM docs](https://microsoft.github.io/apm/) for everything else.
 
 ### general pack
 
-`akilin/agents/packs/general` installs all of the items below.
+`akilin/agents/packs/general` installs all of the items below. Most if not all are adapted from [Matt Pocock's skills](#credits).
 
 | Name | Type | What it does | Install path |
 |---|---|---|---|
-| `grill-me` | skill | Run `/grill-me <plan>` to be interviewed one question at a time until the plan or design holds up. Adapted from [Matt Pocock's skills](#credits). | `akilin/agents/skills/general/grill-me` |
+| `grill-me` | skill | Run `/grill-me <plan>` to be interviewed one question at a time until the plan or design holds up. | `akilin/agents/skills/general/grill-me` |
 | `handoff` | skill | Run `/handoff` to compact the current conversation into a handoff document for another agent to pick up. | `akilin/agents/skills/general/handoff` |
 
 ### engineering pack
 
-`akilin/agents/packs/engineering` installs all of the items below.
+`akilin/agents/packs/engineering` installs all of the items below. Most if not all are adapted from [Matt Pocock's skills](#credits).
 
 > [!NOTE]
 > Run `/setup-akilin-skills` once per repo before using the other skills in this pack. It configures the issue tracker (GitHub or local files) and the domain doc layout they rely on.
@@ -102,7 +102,7 @@ See the [APM docs](https://microsoft.github.io/apm/) for everything else.
 
 ## Credits
 
-`grill-me` comes from [mattpocock/skills](https://github.com/mattpocock/skills) (MIT). Go explore that repo; it's well worth it. Matt's skills are small, sharp and easy to edit. Each targets a real way agents go wrong (misread requirements, no feedback loop, a slowly rotting codebase) without burying you in process, and you stay in control throughout.
+Most if not all of the skills in the `general` and `engineering` packs are adapted from [mattpocock/skills](https://github.com/mattpocock/skills) (MIT). Go explore that repo; it's well worth it. Matt's skills are small, sharp and easy to edit. Each targets a real way agents go wrong (misread requirements, no feedback loop, a slowly rotting codebase) without burying you in process, and you stay in control throughout.
 
 ## License
 
