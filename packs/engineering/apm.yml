@@ -1,0 +1,18 @@
+name: engineering
+version: 1.0.0
+description: Software engineering workflow skills, from design and specs to implementation and review.
+dependencies:
+  apm:
+    - ../../skills/engineering/code-review
+    - ../../skills/engineering/codebase-design
+    - ../../skills/engineering/domain-modeling
+    - ../../skills/engineering/grill-with-docs
+    - ../../skills/engineering/implement-spec
+    - ../../skills/engineering/implement
+    - ../../skills/engineering/prototype
+    - ../../skills/engineering/research
+    - ../../skills/engineering/retro
+    - ../../skills/engineering/setup-akilin-skills
+    - ../../skills/engineering/tdd
+    - ../../skills/engineering/to-spec
+    - ../../skills/engineering/to-tickets

@@ -14,10 +14,12 @@ version: 0.0.0
 targets: [claude, copilot]   # agents to deploy to; drop the one you don't use
 dependencies:
   apm:
+    # General skills: /grill-me, /handoff
+    - akilin/agents/packs/general
+    # Engineering workflow skills: specs, tickets, TDD, review and more
+    - akilin/agents/packs/engineering
     # .NET conventions: 2 instructions
     - akilin/agents/packs/dotnet
-    # /grill-me: get interviewed about a plan until it holds up
-    - akilin/agents/skills/general/grill-me
 ```
 
 Then run `apm install`. Anything in the [catalog](#catalog) can also be installed on its own by its path.
@@ -50,11 +52,39 @@ See the [APM docs](https://microsoft.github.io/apm/) for everything else.
 
 **Skills** are procedures the agent follows when a task calls for them, or when you invoke them as `/name`. **Instructions** are rules that apply automatically to files matching their glob.
 
-### General
+### general pack
+
+`akilin/agents/packs/general` installs all of the items below.
 
 | Name | Type | What it does | Install path |
 |---|---|---|---|
 | `grill-me` | skill | Run `/grill-me <plan>` to be interviewed one question at a time until the plan or design holds up. Adapted from [Matt Pocock's skills](#credits). | `akilin/agents/skills/general/grill-me` |
+| `handoff` | skill | Run `/handoff` to compact the current conversation into a handoff document for another agent to pick up. | `akilin/agents/skills/general/handoff` |
+
+### engineering pack
+
+`akilin/agents/packs/engineering` installs all of the items below.
+
+> [!NOTE]
+> Run `/setup-akilin-skills` once per repo before using the other skills in this pack. It configures the issue tracker (GitHub or local files) and the domain doc layout they rely on.
+
+**Skills** (install path: `akilin/agents/skills/engineering/<name>`)
+
+| Name | What it does |
+|---|---|
+| `setup-akilin-skills` | Run `/setup-akilin-skills` to configure the repo's issue tracker and domain doc layout for this pack. |
+| `grill-with-docs` | Run `/grill-with-docs` to be interviewed about a plan or design, writing ADRs and glossary entries as you go. |
+| `domain-modeling` | Builds and sharpens the domain model: codebase terminology, `GLOSSARY.md` and ADRs. |
+| `codebase-design` | Shared vocabulary for designing deep modules: interfaces, seams, testability. |
+| `prototype` | Builds a throwaway prototype to answer a design question about logic or UI. |
+| `research` | Investigates a question against primary sources and saves the findings as Markdown in the repo. |
+| `to-spec` | Run `/to-spec` to turn the current conversation into a spec on the issue tracker. |
+| `to-tickets` | Run `/to-tickets` to break a plan or spec into tracer-bullet tickets with blocking edges. |
+| `implement` | Run `/implement` to implement a piece of work from a spec or set of tickets. |
+| `implement-spec` | Run `/implement-spec` to implement the output of `/to-spec` and `/to-tickets`. |
+| `tdd` | Test-driven development with a red-green-refactor loop. |
+| `code-review` | Reviews changes since a commit, branch or tag against the repo's coding standards and the originating spec. |
+| `retro` | Run `/retro` to hold a retrospective on a coding session. |
 
 ### dotnet pack
 

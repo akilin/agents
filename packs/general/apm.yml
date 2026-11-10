@@ -1,0 +1,7 @@
+name: general
+version: 1.0.0
+description: General-purpose skills for any project.
+dependencies:
+  apm:
+    - ../../skills/general/grill-me
+    - ../../skills/general/handoff
