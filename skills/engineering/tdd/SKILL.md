@@ -32,5 +32,6 @@ When the shape of that interface is itself in question (how deep the module is, 
 ## Rules of the loop
 
 - **Red before green.** Write the failing test first, then only enough code to pass it. Don't anticipate future tests or add speculative features.
+- **Confirm the test fails for the expected behavioral reason.** If it fails due to a non-behavioral problem (typo, import error, compile error, incorrect setup), fix the test and rerun until the failure is meaningful. Do not proceed to Green until the failing test is valid.
 - **One slice at a time.** One seam, one test, one minimal implementation per cycle.
 - **Refactoring is not part of the loop.** It belongs to the review stage, not the red → green implementation cycle.
