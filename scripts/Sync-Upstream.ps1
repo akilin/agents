@@ -20,11 +20,11 @@
     If $env:GITHUB_TOKEN is set it is used to lift API rate limits.
 
 .PARAMETER Root
-    Directory to scan. Defaults to the `skills` folder next to this script's parent.
+    Directory to scan. Defaults to the `upstreams` folder next to this script.
 #>
 [CmdletBinding()]
 param(
-    [string]$Root = (Join-Path $PSScriptRoot '..\skills')
+    [string]$Root = (Join-Path $PSScriptRoot 'upstreams')
 )
 
 Set-StrictMode -Version Latest

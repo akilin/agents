@@ -3,7 +3,7 @@
 # Bash port of Sync-Upstream.ps1 for Linux / devcontainer use.
 #
 # Usage: scripts/sync-upstream.sh [ROOT]
-#   ROOT  Directory to scan. Defaults to the `skills` folder next to this script's parent.
+#   ROOT  Directory to scan. Defaults to the `upstreams` folder next to this script.
 #
 # Recursively scans ROOT for sidecar files named `upstream.json` or `*.upstream.json`.
 # For each one:
@@ -30,7 +30,7 @@ set -uo pipefail
 
 script_dir=$(cd "$(dirname "$0")" && pwd)
 workspace_root=$(cd "$script_dir/.." && pwd)
-root=${1:-$workspace_root/skills}
+root=${1:-$script_dir/upstreams}
 
 required_fields=(repo path commit)
 
