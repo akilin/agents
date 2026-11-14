@@ -18,7 +18,7 @@ dependencies:
     - akilin/agents/packs/general
     # Engineering workflow skills: specs, tickets, TDD, review and more
     - akilin/agents/packs/engineering
-    # .NET conventions: 2 instructions
+    # .NET conventions: 2 instructions and a testing skill
     - akilin/agents/packs/dotnet
 ```
 
@@ -91,7 +91,13 @@ See the [APM docs](https://microsoft.github.io/apm/) for everything else.
 `akilin/agents/packs/dotnet` installs all of the items below.
 
 > [!NOTE]
-> This pack assumes my own conventions: central package management via `Directory.Packages.props`, shared settings in `Directory.Build.props`, a `$(RepoRoot)` MSBuild property for project references, and NodaTime for dates and times.
+> This pack assumes my own conventions: central package management via `Directory.Packages.props`, shared settings in `Directory.Build.props`, a `$(RepoRoot)` MSBuild property for project references, NodaTime for dates and times, and xUnit, Moq and FluentAssertions-style assertions for tests.
+
+**Skills** (install path: `akilin/agents/skills/dotnet/<name>`)
+
+| Name | What it does |
+|---|---|
+| `dotnet-testing` | Writes and reviews .NET unit and integration tests: test level selection, naming, file structure, test doubles, test data and assertions. |
 
 **Instructions** (install path: `akilin/agents/instructions/dotnet/<name>.instructions.md`)
 

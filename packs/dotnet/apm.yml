@@ -5,3 +5,4 @@ dependencies:
   apm:
     - ../../instructions/dotnet/dotnet-csharp.instructions.md
     - ../../instructions/dotnet/dotnet-csproj.instructions.md
+    - ../../skills/dotnet/dotnet-testing
