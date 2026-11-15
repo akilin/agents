@@ -29,13 +29,13 @@ Use loose mocks by default.
 
 ### Safeguards for loose mocks
 Loose mocks return defaults (`null`, `0`, `false`, completed tasks) for calls that aren't set up or whose arguments don't match. To keep tests from passing for the wrong reason:
-- Happy-path stubs use the exact argument values from `HappyPathDTO`, not `It.IsAny`, so a mismatched stub makes the happy path fail.
+- Stubs use the exact argument values from inputs, not `It.IsAny`
 - Failure-path tests assert the specific exception type plus a message or parameter name. Never a bare `Throw<Exception>()`.
 
 ## Setting up inputs and happy path
 - Define a local `HappyPathDTO` property in the test class, to avoid duplicating setup code.
 - Happy path doubles are configured in the constructor; a test re-stubs only what its name is about.
-- **The first test in each test class is the happy path** using the defaults unchanged. It proves the defaults are valid, so every other test's override is the only thing that differs.
+- **The first test in each test class is the happy path** using the defaults unchanged. It proves the defaults are valid, so every other test's override is the only thing that differs. Skip it only when the happy path has nothing observable at unit level.
 - Prefer exact argument values or `It.Is<T>(x => …)` on the fields that matter. Use `It.IsAny<T>()` only for arguments irrelevant to the test (typically `CancellationToken`).
 
 

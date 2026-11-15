@@ -54,7 +54,8 @@ e.g. `Services/UserServiceTests/CreateUserTests.cs` or `Entities/UserTests/UserC
 - **Method**: production member name without `Async`.
 - **Scenario**: starts with `When…` (state/condition), `With…` (input) or `ForAny…`. E.g. `WhenAlreadyShipped`, `WithActiveUser`, `ForAnyFormattedMoney`.
 - **ExpectedResult**: observable behavior, using verbs like `Returns…`, `Throws…`, `Adds…`, `SetsStatusTo…`, `Raises…`, `Publishes…`, `Sends…`, `DoesNotSend…`.
-- **Never name implementation details**: no `CallsRepository`, `SavesGroup`, `InvokesMapper`, `UsesCache`.
+- **Never name implementation details**: no `CallsRepository`, `InvokesMapper`, `UsesCache`.
+
 
 ### Test method conventions
 
@@ -68,7 +69,7 @@ e.g. `Services/UserServiceTests/CreateUserTests.cs` or `Entities/UserTests/UserC
 
 ## Assertions
 - Expected values must be literals, not recomputed with production logic.
-- Reference test inputs directly (`HappyPathDTO.Email`); use literals for values the SUT derives.
+- Reference test inputs directly (`dto.Email`); use literals for values the SUT derives.
 - **Use the most specific assertion.**
   - ✅ `result.Should().Be(expected)`, `items.Should().ContainSingle()`
   - ❌ `(result.Status == OrderStatus.Cancelled && result.Lines.Count == 1).Should().BeTrue()`
