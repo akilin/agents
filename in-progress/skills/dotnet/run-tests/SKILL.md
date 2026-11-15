@@ -9,5 +9,5 @@ description: 'Use when running .NET tests. Runs them through the token-efficient
 - Do not invoke `dotnet test` directly.
 - Omit `filter` to run the entire selected test project.
 - To run one test class, pass its exact fully qualified path: `./test.sh unit Namespace.Class`.
-- To run one test method, pass its exact fully qualified path: `./test.sh unit Namespace.Class.Method`.
+- To run one test method, pass its exact fully qualified path: `./test.sh integration Namespace.Class.Method`.
 - Successful runs are intentionally silent; exit code `0` means all selected tests passed.
