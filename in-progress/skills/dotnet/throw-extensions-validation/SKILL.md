@@ -50,9 +50,7 @@ Name = dto.Name.ThrowIfEmpty(nameof(dto.Name)).ThrowIfStringTooLong(nameof(dto.N
 
 **Optional string** (null/whitespace → `null`, otherwise validated):
 ```csharp
-Name = dto.Name.IsNullOrWhiteSpace()
-    ? null
-    : dto.Name.ThrowIfStringTooLong(nameof(dto.Name));
+Name = dto.Name.IsNullOrWhiteSpace() ? null : dto.Name.ThrowIfStringTooLong(nameof(dto.Name));
 ```
 
 **Required nullable enum (with default = invalid)** → `ThrowIfNullOrDefault(name).ThrowIfInvalidEnumValue(name)`
