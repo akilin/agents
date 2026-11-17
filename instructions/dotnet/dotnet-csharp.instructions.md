@@ -12,7 +12,7 @@ Anything a competent reader could work out from the code, the names and the rest
 Before writing a comment, try to make the code say it instead: a more descriptive name, or an extracted method with a descriptive name.
 
 Write a comment only when a reader would ask "why is it done this way?" and the code cannot answer: it looks wrong, unnecessary or improvable, and someone might "fix" it and break something. Give that reason, not a description of the code. That is one of:
-- a trade-off between genuine alternatives. Name the one you rejected and why: "retrying the whole batch, not just the failed items: the handler is idempotent and per-item tracking needs extra state"
+- a trade-off between genuine alternatives. Name the one you rejected and why: "polling instead of webhooks: the provider does not retry failed deliveries"
 - an obvious approach deliberately not taken: "no cancellation token: the payment is already captured, so this write must finish even during shutdown"
 - a workaround for a bug or limitation in a dependency. Link the issue and say when it can be removed: "workaround for <issue link>, remove once fixed"
 - external behavior that contradicts the types or docs: "the SDK declares this non-nullable, but the API returns null when <condition>"
