@@ -19,4 +19,4 @@ Write a comment only when a reader would ask "why is it done this way?" and the 
 - an accepted limitation or shortcut. Say where it stops working: "loads every row into memory: fine for a few hundred, needs paging if the table grows"
 - a link to the source of copied code or a non-obvious constant
 
-No XML doc comments (`/// <summary>`); names and signatures are the documentation.
+No XML doc comments (`/// <summary>`); names and signatures are the documentation. Exception: the public API of a library published as a package and consumed outside its own repo. Document that, and say what the signature does not.
