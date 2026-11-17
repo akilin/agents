@@ -18,3 +18,5 @@ Write a comment only when a reader would ask "why is it done this way?" and the 
 - external behavior that contradicts the types or docs: "the SDK declares this non-nullable, but the API returns null when <condition>"
 - an accepted limitation or shortcut. Say where it stops working: "loads every row into memory: fine for a few hundred, needs paging if the table grows"
 - a link to the source of copied code or a non-obvious constant
+
+No XML doc comments (`/// <summary>`); names and signatures are the documentation.
