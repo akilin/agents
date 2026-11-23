@@ -16,9 +16,9 @@ dependencies:
   apm:
     # General skills: /grill-me, /handoff
     - akilin/agents/packs/general
-    # Engineering workflow skills: specs, tickets, TDD, review and more, plus code comment rules
+    # Engineering workflow skills: specs, tickets, TDD, review and more, plus code comment and TDD rules
     - akilin/agents/packs/engineering
-    # .NET conventions: 3 instructions and a testing skill
+    # .NET conventions: 4 instructions and a testing skill
     - akilin/agents/packs/dotnet
 ```
 
@@ -93,6 +93,7 @@ See the [APM docs](https://microsoft.github.io/apm/) for everything else.
 | Name | Applies to | What it covers |
 |---|---|---|
 | `code-comments` | `**` (every file) | When to write a code comment: almost never, and only for a "why" the code cannot express. No doc comments outside a published library's public API. |
+| `tdd` | `**` (every file) | TDD by default for features and bug fixes: a failing test first, a regression test for a bug. Lists the exceptions, such as prototypes, refactors and changes with no logic to test. |
 
 ### dotnet pack
 
@@ -111,10 +112,10 @@ See the [APM docs](https://microsoft.github.io/apm/) for everything else.
 
 | Name | Applies to | What it covers |
 |---|---|---|
-| `dotnet-csharp` | `**/*.cs` | NodaTime types for dates and times, a failing regression test before a bug fix. |
+| `dotnet-csharp` | `**/*.cs` | NodaTime types for dates and times. |
 | `dotnet-csproj` | `**/*.{csproj,props}` | Central package management, `Directory.Build.props`, `$(RepoRoot)` references. |
 
-The pack also installs the [`code-comments`](#engineering-pack) instruction from the engineering pack.
+The pack also installs the [`code-comments` and `tdd`](#engineering-pack) instructions from the engineering pack.
 
 ## Credits
 
