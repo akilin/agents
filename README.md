@@ -67,12 +67,14 @@ See the [APM docs](https://microsoft.github.io/apm/) for everything else.
 
 > [!NOTE]
 > Run `/setup-akilin-skills` once per repo before using the other skills in this pack. It configures the issue tracker (GitHub or local files) and the domain doc layout they rely on.
+>
+> In .NET repos that use the Microsoft.Testing.Platform runner, it also writes a `test.sh` at the repo root and tells agents to run tests through it instead of `dotnet test`: a short command, no output on success and trimmed output on failure. Re-run the skill to refresh the script after an update.
 
 **Skills** (install path: `akilin/agents/skills/engineering/<name>`)
 
 | Name | What it does |
 |---|---|
-| `setup-akilin-skills` | Run `/setup-akilin-skills` to configure the repo's issue tracker and domain doc layout for this pack. |
+| `setup-akilin-skills` | Run `/setup-akilin-skills` to configure the repo's issue tracker and domain doc layout for this pack, and to add a token-efficient `test.sh` test runner to .NET repos. |
 | `grill-with-docs` | Run `/grill-with-docs` to be interviewed about a plan or design, writing ADRs and glossary entries as you go. |
 | `domain-modeling` | Builds and sharpens the domain model: codebase terminology, `GLOSSARY.md` and ADRs. |
 | `codebase-design` | Shared vocabulary for designing deep modules: interfaces, seams, testability. |

@@ -1,6 +1,6 @@
 ---
 name: setup-akilin-skills
-description: "Configure this repo for the engineering skills: set up its issue tracker and domain doc layout. Run once before first use of the other engineering skills."
+description: "Configure this repo for the engineering skills: set up its issue tracker and domain doc layout, and add a token-efficient test runner to .NET repos. Run once before first use of the other engineering skills."
 disable-model-invocation: true
 ---
 
@@ -10,6 +10,7 @@ Scaffold the per-repo configuration that the engineering skills assume:
 
 - **Issue tracker**: where issues live (GitHub by default; local markdown is also supported out of the box)
 - **Domain docs**: where `GLOSSARY.md` and ADRs live, and the consumer rules for reading them
+- **Test runner** (.NET repos only): a root `test.sh` that agents run instead of `dotnet test`, for a short command and short output
 
 This is a prompt-driven skill, not a deterministic script. Explore, present what you found, confirm with the user, then write.
 
@@ -25,6 +26,7 @@ Look at the current repo to understand its starting state. Read whatever exists;
 - `docs/adr/` and any `src/*/docs/adr/` directories
 - `docs/agents/`: does this skill's prior output already exist?
 - `.scratch/`: a sign that a local-markdown issue tracker convention is already in use
+- .NET test signals: test projects (`.csproj` files that hold tests, not helper libraries such as `TestUtils` or `Fixtures`), whether `global.json` sets `test.runner` to `Microsoft.Testing.Platform`, and whether a `test.sh` already exists at the repo root
 - Monorepo signals: a `pnpm-workspace.yaml`, a `workspaces` field in `package.json`, or a populated `packages/*` with its own `src/`. These are present only in a genuinely large multi-package repo; their absence means single-context, which is almost every repo.
 
 ### 2. Present findings and ask
@@ -51,12 +53,26 @@ A GitHub tracker needs a reachable repo. When the user picks GitHub and no `git 
 
 Offer **multi-context** (a root `GLOSSARY-MAP.md` pointing to per-context `GLOSSARY.md` files) only when exploration found monorepo signals. Then confirm which layout they want.
 
+**Section C: Test runner.** Skip this section without mentioning it when the repo has no .NET test projects.
+
+> Explainer: `test.sh` wraps `dotnet test` so an agent types a short command and reads short output: nothing when the tests pass, and only the failures, with build and runner noise stripped, when they don't.
+
+The script uses options that only the Microsoft.Testing.Platform runner has. If `global.json` doesn't select that runner, say so, don't write the script, and move on. Don't change the runner here.
+
+Otherwise propose one target per test project: a short lowercase name the agent will type, mapped to the project's path relative to the repo root. Use `unit`, `integration` and `e2e` where a project's name or folder says so; derive the others from the project name.
+
+If a root `test.sh` already exists:
+
+- It has a `TEST_PROJECTS` block: it is this skill's earlier output. Keep its entries as the proposal and say the rest of the script will be refreshed from the template.
+- It has none: it is someone else's script. Ask before replacing it.
+
 ### 3. Confirm and edit
 
 Show the user a draft of:
 
 - The `## Agent skills` block to add to whichever of `CLAUDE.md` / `AGENTS.md` is being edited (see step 4 for selection rules)
 - The contents of `docs/agents/issue-tracker.md` and `docs/agents/domain.md`
+- The targets and project paths for `test.sh`, when Section C applies
 
 Let them edit before writing.
 
@@ -84,7 +100,13 @@ The block:
 ### Domain docs
 
 [one-line summary of layout: "single-context" or "multi-context"]. See `docs/agents/domain.md`.
+
+### Running tests
+
+Run .NET tests with `./test.sh <unit|integration> [filter]` from the repo root, never with `dotnet test`. `filter` is a fully qualified `Namespace.Class` or `Namespace.Class.Method`; omit it to run the whole project. No output and exit code 0 mean every selected test passed.
 ```
+
+Include `### Running tests` only when the repo has this skill's `test.sh` (Section C), with `unit|integration` replaced by that script's targets.
 
 Then write the docs files using the seed templates in this skill folder as a starting point:
 
@@ -94,6 +116,14 @@ Then write the docs files using the seed templates in this skill folder as a sta
 
 For "other" issue trackers, write `docs/agents/issue-tracker.md` from scratch using the user's description.
 
+**Test runner** (only when Section C applies):
+
+1. Copy [test.sh](./test.sh) from this skill folder to the repo root.
+2. Replace the entries of its `TEST_PROJECTS` block with the confirmed targets. Change nothing else in the script.
+3. Make it executable: `chmod +x test.sh`, or `git add --chmod=+x test.sh` where the filesystem doesn't keep the bit.
+4. Make sure `.gitattributes` gives shell scripts LF line endings (`*.sh text eol=lf`); add the line if it's missing.
+5. Run `./test.sh` with no arguments and check that the usage line lists the targets. Then run the fastest target once, usually `unit`, and report the result. Don't start infrastructure to run the others.
+
 ### 5. Done
 
-Tell the user the setup is complete and which engineering skills will now read from these files. Mention they can edit `docs/agents/*.md` directly later; re-running this skill is only necessary if they want to switch issue trackers or restart from scratch.
+Tell the user the setup is complete and which engineering skills will now read from these files. Mention they can edit `docs/agents/*.md` directly later; re-running this skill is only necessary if they want to switch issue trackers, restart from scratch, or refresh `test.sh` after this skill was updated.

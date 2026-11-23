@@ -1,23 +1,37 @@
 #!/usr/bin/env bash
+# Test runner for coding agents: a short command, no output on success, trimmed output on failure.
+# Needs the Microsoft.Testing.Platform runner (global.json). Lives at the repo root.
+# Written by the setup-akilin-skills skill, which keeps the TEST_PROJECTS block and replaces the rest when re-run.
 
 set -u
+
+# target=test project path, relative to the repo root
+readonly TEST_PROJECTS=(
+	'unit=tests/unit-tests/UnitTests.csproj'
+	'integration=tests/integration/IntegrationTests.csproj'
+)
 
 readonly MTP_EXIT_SUCCESS=0
 readonly MTP_EXIT_NO_TESTS=8
 
+targets=''
+project=''
+for entry in "${TEST_PROJECTS[@]}"; do
+	targets+="${targets:+|}${entry%%=*}"
+	if [[ $# -ge 1 && ${entry%%=*} == "$1" ]]; then
+		project=${entry#*=}
+	fi
+done
+
 if [[ $# -lt 1 || $# -gt 2 ]]; then
-	printf 'usage: %s <unit|integration> [filter]\n' "${0##*/}" >&2
+	printf 'usage: %s <%s> [filter]\n' "${0##*/}" "$targets" >&2
 	exit 2
 fi
 
-case "$1" in
-	unit) project='tests/unit-tests/UnitTests.csproj' ;;
-	integration) project='tests/integration/IntegrationTests.csproj' ;;
-	*)
-		printf 'unknown test target: %s\n' "$1" >&2
-		exit 2
-		;;
-esac
+if [[ -z $project ]]; then
+	printf 'unknown test target: %s (expected %s)\n' "$1" "$targets" >&2
+	exit 2
+fi
 
 repo_root=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
 # global.json (selects the test runner) is resolved from the working directory.
