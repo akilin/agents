@@ -5,6 +5,8 @@ dependencies:
   apm:
     - ../../instructions/engineering/code-comments.instructions.md
     - ../../instructions/engineering/tdd.instructions.md
+    - ../../instructions/dotnet/dotnet-aspnet.instructions.md
     - ../../instructions/dotnet/dotnet-csharp.instructions.md
     - ../../instructions/dotnet/dotnet-csproj.instructions.md
+    - ../../instructions/dotnet/dotnet-efcore.instructions.md
     - ../../skills/dotnet/dotnet-testing
