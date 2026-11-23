@@ -1,8 +1,9 @@
 name: engineering
 version: 1.0.0
-description: Software engineering workflow skills, from design and specs to implementation and review.
+description: Software engineering workflow skills, from design and specs to implementation and review, plus code comment rules.
 dependencies:
   apm:
+    - ../../instructions/engineering/code-comments.instructions.md
     - ../../skills/engineering/code-review
     - ../../skills/engineering/codebase-design
     - ../../skills/engineering/domain-modeling

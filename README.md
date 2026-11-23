@@ -16,9 +16,9 @@ dependencies:
   apm:
     # General skills: /grill-me, /handoff
     - akilin/agents/packs/general
-    # Engineering workflow skills: specs, tickets, TDD, review and more
+    # Engineering workflow skills: specs, tickets, TDD, review and more, plus code comment rules
     - akilin/agents/packs/engineering
-    # .NET conventions: 2 instructions and a testing skill
+    # .NET conventions: 3 instructions and a testing skill
     - akilin/agents/packs/dotnet
 ```
 
@@ -88,6 +88,12 @@ See the [APM docs](https://microsoft.github.io/apm/) for everything else.
 | `code-review` | Reviews changes since a commit, branch or tag against the repo's coding standards and the originating spec. |
 | `retro` | Run `/retro` to hold a retrospective on a coding session. |
 
+**Instructions** (install path: `akilin/agents/instructions/engineering/<name>.instructions.md`)
+
+| Name | Applies to | What it covers |
+|---|---|---|
+| `code-comments` | `**` (every file) | When to write a code comment: almost never, and only for a "why" the code cannot express. No doc comments outside a published library's public API. |
+
 ### dotnet pack
 
 `akilin/agents/packs/dotnet` installs all of the items below.
@@ -105,8 +111,10 @@ See the [APM docs](https://microsoft.github.io/apm/) for everything else.
 
 | Name | Applies to | What it covers |
 |---|---|---|
-| `dotnet-csharp` | `**/*.cs` | Use NodaTime types for dates and times. |
+| `dotnet-csharp` | `**/*.cs` | NodaTime types for dates and times, a failing regression test before a bug fix. |
 | `dotnet-csproj` | `**/*.{csproj,props}` | Central package management, `Directory.Build.props`, `$(RepoRoot)` references. |
+
+The pack also installs the [`code-comments`](#engineering-pack) instruction from the engineering pack.
 
 ## Credits
 
