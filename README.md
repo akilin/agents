@@ -114,4 +114,4 @@ Most if not all of the skills in the `general` and `engineering` packs are adapt
 
 ## License
 
-[MIT](LICENSE). Skills adapted from elsewhere keep their original license; see [THIRD_PARTY_NOTICES](THIRD_PARTY_NOTICES).
+[MIT](LICENCE). Skills adapted from elsewhere keep their original license; see [THIRD_PARTY_NOTICES](THIRD_PARTY_NOTICES).
