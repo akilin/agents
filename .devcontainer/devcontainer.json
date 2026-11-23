@@ -7,6 +7,9 @@
     },
     "customizations": {
         "vscode": {
+            "extensions": [
+                "anthropic.claude-code"
+            ],
             "settings": {
                 "chat.permissions.default": "autoApprove"
             }
