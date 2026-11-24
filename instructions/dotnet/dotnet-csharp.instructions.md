@@ -1,5 +1,5 @@
 ---
 applyTo: '**/*.cs'
 ---
-## Instructions
+### C#
 - Use `NodaTime` types for dates/times.

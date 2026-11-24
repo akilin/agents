@@ -2,7 +2,7 @@
 description: When and how to write code comments
 applyTo: '**'
 ---
-## Comments
+### Comments
 Default to no comments. Anything a competent reader could work out from the code, the names and the rest of the repo does not get one. If something needs explaining, first try a more descriptive name or an extracted, well-named method.
 
 Write a comment only when a reader would ask "why is it done this way?" and the code cannot answer: it looks wrong, unnecessary or improvable, and someone might "fix" it and break something. Give that reason, not a description of the code. It is one of:
