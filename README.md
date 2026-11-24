@@ -100,7 +100,7 @@ See the [APM docs](https://microsoft.github.io/apm/) for everything else.
 `akilin/agents/packs/dotnet` installs all of the items below.
 
 > [!NOTE]
-> This pack assumes my own conventions: central package management via `Directory.Packages.props`, shared settings in `Directory.Build.props`, a `$(RepoRoot)` MSBuild property for project references, NodaTime for dates and times, C# source under `src/`, EF Core with `Restrict` as the default delete behaviour, and xUnit, Moq and FluentAssertions-style assertions for tests.
+> This pack assumes my own conventions: central package management via `Directory.Packages.props`, shared settings in `Directory.Build.props`, a `$(RepoRoot)` MSBuild property for project references, NodaTime for dates and times, EF Core with `Restrict` as the default delete behaviour, and xUnit, Moq and FluentAssertions-style assertions for tests.
 
 **Skills** (install path: `akilin/agents/skills/dotnet/<name>`)
 
@@ -112,10 +112,10 @@ See the [APM docs](https://microsoft.github.io/apm/) for everything else.
 
 | Name | Applies to | What it covers |
 |---|---|---|
-| `dotnet-aspnet` | `src/**/*.cs` | API endpoints accept and return DTOs, never entities. `record` types for DTOs. |
+| `dotnet-aspnet` | `**/*.cs` | API endpoints accept and return DTOs, never entities. `record` types for DTOs. |
 | `dotnet-csharp` | `**/*.cs` | NodaTime types for dates and times. |
 | `dotnet-csproj` | `**/*.{csproj,props}` | Central package management, `Directory.Build.props`, `$(RepoRoot)` references. |
-| `dotnet-efcore` | `src/**/*.cs` | Entity configuration via `IEntityTypeConfiguration<T>` classes instead of attributes. Explicit cascade deletes over a `Restrict` default. |
+| `dotnet-efcore` | `**/*.cs` | Entity configuration via `IEntityTypeConfiguration<T>` classes instead of attributes. Explicit cascade deletes over a `Restrict` default. |
 
 The pack also installs the [`code-comments` and `tdd`](#engineering-pack) instructions from the engineering pack.
 
