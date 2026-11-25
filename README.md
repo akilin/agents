@@ -14,7 +14,7 @@ version: 0.0.0
 targets: [claude, copilot]   # agents to deploy to; drop the one you don't use
 dependencies:
   apm:
-    # General skills: /grill-me, /handoff
+    # General skills: /grill-me, /handoff, /anything-pending
     - akilin/agents/packs/general
     # Engineering workflow skills: specs, tickets, TDD, review and more, plus code comment and TDD rules
     - akilin/agents/packs/engineering
@@ -60,6 +60,7 @@ See the [APM docs](https://microsoft.github.io/apm/) for everything else.
 |---|---|---|---|
 | `grill-me` | skill | Run `/grill-me <plan>` to be interviewed one question at a time until the plan or design holds up. | `akilin/agents/skills/general/grill-me` |
 | `handoff` | skill | Run `/handoff` to compact the current conversation into a handoff document for another agent to pick up. | `akilin/agents/skills/general/handoff` |
+| `anything-pending` | skill | Run `/anything-pending` to list everything in the session waiting on you: unanswered questions, open decisions, approvals and actions only you can take. | `akilin/agents/skills/general/anything-pending` |
 
 ### engineering pack
 
