@@ -86,7 +86,7 @@ See the [APM docs](https://microsoft.github.io/apm/) for everything else.
 | `implement` | Run `/implement` to implement a piece of work from a spec or set of tickets. |
 | `implement-spec` | Run `/implement-spec` to implement the output of `/to-spec` and `/to-tickets`. |
 | `tdd` | Test-driven development with a red-green-refactor loop. |
-| `code-review` | Reviews changes since a commit, branch or tag against the repo's coding standards and the originating spec. |
+| `code-review` | Reviews changes since a commit, branch or tag against the repo's coding standards, built-in style preferences per language (general, .NET, JavaScript/TypeScript) and the originating spec. |
 | `retro` | Run `/retro` to hold a retrospective on a coding session. |
 
 **Instructions** (install path: `akilin/agents/instructions/engineering/<name>.instructions.md`)

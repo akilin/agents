@@ -1,0 +1,1 @@
+# JavaScript / TypeScript style preferences

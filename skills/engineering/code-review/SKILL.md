@@ -55,6 +55,16 @@ Each smell reads *what it is* → *how to fix*; match it against the diff:
 - **Middle Man**: a class or function that mostly just delegates onward. → cut it, call the real target direct.
 - **Refused Bequest**: a subclass or implementer that ignores or overrides most of what it inherits. → drop the inheritance, use composition.
 
+The Standards axis also carries the **style preferences** in `styles/`, picked by the file types in the diff:
+
+| Diff touches | Read |
+|---|---|
+| any file | [styles/general.md](styles/general.md) |
+| `*.cs` | [styles/dotnet.md](styles/dotnet.md) |
+| `*.js`, `*.jsx`, `*.ts`, `*.tsx`, `*.mjs`, `*.cjs` | [styles/javascript.md](styles/javascript.md) |
+
+Skip a language file when the diff has no matching files. The same two rules bind these preferences as the smell baseline: the repo overrides them, and they're judgement calls to label as "style preference", never hard violations. Style preferences override the smell baseline where they conflict.
+
 ### 4. Spawn both sub-agents in parallel
 
 Issue both sub-agent calls together, in the foreground, and aggregate the reports they return.
@@ -62,8 +72,8 @@ Issue both sub-agent calls together, in the foreground, and aggregate the report
 **Standards sub-agent prompt** should include:
 
 - The full diff command and commit list.
-- The list of standards-source files you found in step 3, **plus the smell baseline from step 3** pasted in full (the sub-agent has no other access to it).
-- The brief: "Report, per file/hunk where relevant, (a) every place the diff violates a documented standard: cite the standard (file + the rule); and (b) any baseline smell you spot: name it and quote the hunk. Distinguish hard violations from judgement calls: documented-standard breaches can be hard, but baseline smells are always judgement calls, and a documented repo standard overrides the baseline. Skip anything tooling enforces. Under 400 words."
+- The list of standards-source files you found in step 3, **plus the smell baseline and the selected style-preference files from step 3** pasted in full (the sub-agent has no other access to them).
+- The brief: "Report, per file/hunk where relevant, (a) every place the diff violates a documented standard: cite the standard (file + the rule); (b) any baseline smell you spot: name it and quote the hunk; and (c) any departure from a style preference: cite the preference and quote the hunk. Distinguish hard violations from judgement calls: documented-standard breaches can be hard, but baseline smells and style preferences are always judgement calls, and a documented repo standard overrides both. Skip anything tooling enforces. Under 400 words."
 
 **Spec sub-agent prompt** should include:
 
