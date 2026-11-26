@@ -6,7 +6,7 @@ description: Test-driven development. Use when implementing any feature or fixin
 # Test-Driven Development
 
 TDD is the red → green loop.
-Write a failing test first, see it fail for the expected reason, then write minimal code that makes it pass.
+Write a failing test first, see it fail for the expected behavioral reason, then write minimal code that makes it pass.
 Refactoring is not part of the loop. It belongs to the review stage, not the red → green implementation cycle.
 
 Core principle: If you didn't watch the test fail before writing the implementation, you don't know if it tests the right thing.
