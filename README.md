@@ -16,7 +16,7 @@ dependencies:
   apm:
     # General skills: /grill-me, /handoff, /ask-questions
     - akilin/agents/packs/general
-    # Engineering workflow skills: specs, tickets, TDD, review and more, plus code comment, TDD and git rules
+    # Engineering workflow skills: specs, tickets, TDD, review and more, plus code comment and TDD rules
     - akilin/agents/packs/engineering
     # .NET conventions: 4 instructions and a testing skill
     - akilin/agents/packs/dotnet
@@ -94,7 +94,6 @@ See the [APM docs](https://microsoft.github.io/apm/) for everything else.
 | Name | Applies to | What it covers |
 |---|---|---|
 | `code-comments` | `**` (every file) | When to write a code comment: almost never, and only for a "why" the code cannot express. No doc comments outside a published library's public API. |
-| `git` | `**` (every file) | Conventional Commits messages and `<prefix>/<kebab-case>` branch names. |
 | `tdd` | `**` (every file) | TDD by default for features and bug fixes: a failing test first, a regression test for a bug. Lists the exceptions, such as prototypes, refactors and changes with no logic to test. |
 
 ### dotnet pack
