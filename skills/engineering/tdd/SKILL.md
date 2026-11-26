@@ -41,3 +41,12 @@ When the shape of that interface is itself in question (how deep the module is, 
 - **Confirm the test fails for the expected behavioral reason.** If it fails due to a non-behavioral problem (typo, import error, compile error, incorrect setup), fix the test and rerun until the failure is meaningful. Do not proceed to Green until the failing test is valid.
 - **One slice at a time.** One seam, one test, one minimal implementation per cycle.
 - **Refactoring is not part of the loop.** It belongs to the review stage, not the red → green implementation cycle.
+
+## Definition of done
+
+Done means all of these are true:
+
+- Every behavior you implemented went through the loop in this order: you wrote the test, watched it fail for the expected behavioral reason, wrote the simplest code that makes it pass, then watched it pass.
+- No implementation code exists beyond what a failing test required.
+
+A test written after its implementation does not count, even if it passes, because it never showed it could fail. If you find that you wrote code before its test, the slice is not done. Revert or stash that code, run the test and watch it fail for the expected reason, then restore the code and watch the test pass.
