@@ -6,7 +6,6 @@ description: Writes and reviews .NET unit and integration tests. Test level sele
 # .NET testing
 
 Before writing or reviewing unit tests, read [unit-tests.md](unit-tests.md).
-Before writing or reviewing integration or API tests, read [integration-tests.md](integration-tests.md).
 
 ## Core Rules
 - Never weaken, skip, or delete a test, or change its expected values, to make failing test pass without the user's confirmation.
@@ -29,8 +28,12 @@ Test at the lowest level that can verify the behavior:
 - **Unit tests**: pure domain logic, field validation, permission checks, branching behavior that does not require real infrastructure.
 - **Integration tests**: API happy paths, database-backed flows, errors that originate in the database, and behavior that could differ between a real database and in-memory objects/mocks.
 
-## What to test
+## Integration tests
+
+- Do not add integration tests for behavior that can be covered by unit tests.
 - Each new API route needs one happy-path API integration test, even if its logic is unit-tested. This verifies routing, serialization, DI and middleware wiring.
+- For writes, assert the persisted state by reading it back, not only the status code or return value. Unit tests never verify persistence, so this is the only place it is checked.
+- Do not test framework-guaranteed behavior, such as global authorization, unless the feature adds custom behavior.
 
 ### Repository tests
 Add repository integration tests when the repository method contains any of:
