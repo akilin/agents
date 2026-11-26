@@ -85,7 +85,7 @@ See the [APM docs](https://microsoft.github.io/apm/) for everything else.
 | `to-tickets` | Run `/to-tickets` to break a plan or spec into tracer-bullet tickets with blocking edges. |
 | `implement` | Run `/implement` to implement a piece of work from a spec or set of tickets. |
 | `implement-spec` | Run `/implement-spec` to implement the output of `/to-spec` and `/to-tickets`. |
-| `tdd` | Test-driven development with a red-green-refactor loop. |
+| `tdd` | Test-driven development for features and bug fixes: a red → green loop with the failing test first, at seams agreed with you. Refactoring is left to review. |
 | `code-review` | Reviews changes since a commit, branch or tag against the repo's coding standards, built-in style preferences per language (general, .NET, JavaScript/TypeScript) and the originating spec. |
 | `retro` | Run `/retro` to hold a retrospective on a coding session. |
 

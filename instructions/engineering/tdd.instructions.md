@@ -2,7 +2,7 @@
 description: Default to test-driven development for features and bug fixes
 applyTo: '**'
 ---
-### TDD
+### Test-Driven Development (TDD)
 Default to TDD for features and bug fixes: write a failing test first, see it fail for the expected reason, then write the code that makes it pass. For a bug fix, the test reproduces the bug.
 
 Exceptions:

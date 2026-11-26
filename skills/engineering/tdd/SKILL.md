@@ -1,17 +1,23 @@
 ---
 name: tdd
-description: Test-driven development. Use when the user wants to build features or fix bugs using tdd, "red-green-refactor", "red-green", or wants to write tests first.
+description: Test-driven development. Use when implementing any feature or fixing bugs, before writing implementation code.
 ---
 
 # Test-Driven Development
 
-TDD is the red → green loop. This skill is the reference that makes that loop produce tests worth keeping: what a good test is, where tests go, the anti-patterns, and the rules of the loop. Every section applies on every cycle: consult them before and during the loop, not after.
+TDD is the red → green loop.
+Write a failing test first, see it fail for the expected reason, then write minimal code that makes it pass.
+Refactoring is not part of the loop. It belongs to the review stage, not the red → green implementation cycle.
+
+Core principle: If you didn't watch the test fail before writing the implementation, you don't know if it tests the right thing.
+
+Every section applies on every cycle: consult them before and during the loop, not after.
 
 When exploring the codebase, read `GLOSSARY.md` (if it exists) so test names and interface vocabulary match the project's domain language, and respect ADRs in the area you're touching.
 
 ## What a good test is
 
-Tests verify behavior through public interfaces, not implementation details. Code can change entirely; tests shouldn't. A good test reads like a specification: "user can checkout with valid cart" tells you exactly what capability exists, and it survives refactors because it doesn't care about internal structure.
+Tests verify behavior through public interfaces, not implementation details. Code can change entirely; tests shouldn't. A good test reads like a specification: "user with valid cart can checkout" tells you exactly what capability exists, and it survives refactors because it doesn't care about internal structure.
 
 ## Seams: where tests go
 
@@ -31,7 +37,7 @@ When the shape of that interface is itself in question (how deep the module is, 
 
 ## Rules of the loop
 
-- **Red before green.** Write the failing test first, then only enough code to pass it. Don't anticipate future tests or add speculative features.
+- **Red before green.** Write the failing test first, confirm it fails for the expected reason, then write the simplest code that makes it pass. Don't anticipate future tests or add speculative features.
 - **Confirm the test fails for the expected behavioral reason.** If it fails due to a non-behavioral problem (typo, import error, compile error, incorrect setup), fix the test and rerun until the failure is meaningful. Do not proceed to Green until the failing test is valid.
 - **One slice at a time.** One seam, one test, one minimal implementation per cycle.
 - **Refactoring is not part of the loop.** It belongs to the review stage, not the red → green implementation cycle.
