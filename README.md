@@ -116,7 +116,7 @@ See the [APM docs](https://microsoft.github.io/apm/) for everything else.
 | `dotnet-aspnet` | `**/*.cs` | API endpoints accept and return DTOs, never entities. `record` types for DTOs. |
 | `dotnet-csharp` | `**/*.cs` | NodaTime types for dates and times. |
 | `dotnet-csproj` | `**/*.{csproj,props}` | Central package management, `Directory.Build.props`, `$(RepoRoot)` references. |
-| `dotnet-efcore` | `**/*.cs` | Entity configuration via `IEntityTypeConfiguration<T>` classes instead of attributes. Explicit cascade deletes over a `Restrict` default. |
+| `dotnet-efcore` | `**/*.cs` | Entity configuration via `IEntityTypeConfiguration<T>` classes instead of attributes. Explicit `Cascade`/`SetNull` over a `ClientNoAction` default. |
 
 The pack also installs the [`code-comments` and `tdd`](#engineering-pack) instructions from the engineering pack.
 

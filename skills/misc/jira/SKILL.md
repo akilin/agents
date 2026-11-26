@@ -1,6 +1,6 @@
 ---
 name: jira
-description: 'Use when working with Jira tickets. Trigger phrases: "lets work on", "load information for ticket", "show tickets assigned to me", "show unassigned tickets"'
+description: 'Load a Jira ticket (fields, comments, linked items, attachments) or list current-sprint tickets assigned to the user or unassigned, via the Atlassian CLI (acli). Use when the user names a Jira ticket or key, e.g. "lets work on PROJ-123", "load information for ticket PROJ-123", or asks "show tickets assigned to me" or "show unassigned tickets".'
 context: fork
 user-invocable: false
 ---
@@ -68,7 +68,7 @@ When user asks to show tickets assigned to them, or unassigned tickets, pull the
 
 ### Transition ticket to new status
 ```sh
-acli jira workitem transition --key $key --status $status --yes
+acli jira workitem transition --key $key --status "$status" --yes
 ```
 Common status values are  "To Do", "In Progress", "In Review", "Done", "Blocked" but they can be different in different Jira instances. 
 

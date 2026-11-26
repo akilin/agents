@@ -67,7 +67,7 @@ When designing an interface, ask:
 ## Designing for testability
 
 Good interfaces make testing natural:
-- Return results, don't produce side effects.
+- **Prefer returning results to producing side effects**
 - **Small surface area.** Fewer methods = fewer tests needed. Fewer params = simpler test setup.
 
 ## Relationships

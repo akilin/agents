@@ -73,13 +73,13 @@ Issue both sub-agent calls together, in the foreground, and aggregate the report
 
 - The full diff command and commit list.
 - The list of standards-source files you found in step 3, **plus the smell baseline and the selected style-preference files from step 3** pasted in full (the sub-agent has no other access to them).
-- The brief: "Report, per file/hunk where relevant, (a) every place the diff violates a documented standard: cite the standard (file + the rule); (b) any baseline smell you spot: name it and quote the hunk; and (c) any departure from a style preference: cite the preference and quote the hunk. Distinguish hard violations from judgement calls: documented-standard breaches can be hard, but baseline smells and style preferences are always judgement calls, and a documented repo standard overrides both. Skip anything tooling enforces. Under 400 words."
+- The brief: "Report, per file/hunk where relevant, (a) every place the diff violates a documented standard: cite the standard (file + the rule); (b) any baseline smell you spot: name it and quote the hunk; and (c) any departure from a style preference: cite the preference and quote the hunk. Distinguish hard violations from judgement calls: documented-standard breaches can be hard, but baseline smells and style preferences are always judgement calls, and a documented repo standard overrides both. Skip anything tooling enforces. Keep each finding to a line or two and aim for under 400 words, but never drop a finding to fit: report them all."
 
 **Spec sub-agent prompt** should include:
 
 - The diff command and commit list.
 - The path or fetched contents of the spec.
-- The brief: "Report: (a) requirements the spec asked for that are missing or partial; (b) behaviour in the diff that wasn't asked for (scope creep); (c) requirements that look implemented but where the implementation looks wrong. Quote the spec line for each finding. Under 400 words."
+- The brief: "Report: (a) requirements the spec asked for that are missing or partial; (b) behaviour in the diff that wasn't asked for (scope creep); (c) requirements that look implemented but where the implementation looks wrong. Quote the spec line for each finding; for scope creep, which has no spec line, quote the hunk instead. Keep each finding to a line or two and aim for under 400 words, but never drop a finding to fit: report them all."
 
 If the spec is missing, skip the Spec sub-agent and note this in the final report.
 

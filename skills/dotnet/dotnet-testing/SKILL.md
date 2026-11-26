@@ -5,8 +5,8 @@ description: Writes and reviews .NET unit and integration tests. Test level sele
 
 # .NET testing
 
-Before writing unit tests, read [unit-tests.md](unit-tests.md).
-Before writing integration or API tests, read [integration-tests.md](integration-tests.md).
+Before writing or reviewing unit tests, read [unit-tests.md](unit-tests.md).
+Before writing or reviewing integration or API tests, read [integration-tests.md](integration-tests.md).
 
 ## Core Rules
 - Never weaken, skip, or delete a test, or change its expected values, to make failing test pass without the user's confirmation.
