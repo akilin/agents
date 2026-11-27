@@ -22,6 +22,8 @@ Capture the diff command once: `git diff <fixed-point>...HEAD` (three-dot, so th
 
 Before going further, confirm the fixed point resolves (`git rev-parse <fixed-point>`) and the diff is non-empty. A bad ref or empty diff should fail here, not inside two parallel sub-agents.
 
+If the repo root has a `format.sh`, run it, fix what it reports until it exits 0, and commit the result before going further.
+
 ### 2. Identify the spec source
 
 Look for the originating spec, in this order:
@@ -88,6 +90,8 @@ If the spec is missing, skip the Spec sub-agent and note this in the final repor
 Present the two reports under `## Standards` and `## Spec` headings, verbatim or lightly cleaned. Do **not** merge or rerank findings, because the two axes are deliberately separate (see _Why two axes_).
 
 End with a one-line summary: total findings per axis, and the worst issue _within each axis_ (if any). Don't pick a single winner across axes: that's the reranking the separation exists to prevent.
+
+Once the findings are fixed, run `format.sh` the same way again and commit the result.
 
 ## Why two axes
 

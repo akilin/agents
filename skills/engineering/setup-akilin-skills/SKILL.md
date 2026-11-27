@@ -1,6 +1,6 @@
 ---
 name: setup-akilin-skills
-description: "Configure this repo for the engineering skills: set up its issue tracker and domain doc layout, and add a token-efficient test runner to .NET repos. Run once before first use of the other engineering skills."
+description: "Configure this repo for the engineering skills: set up its issue tracker and domain doc layout, and add a token-efficient test runner and a review-time style pass to .NET repos. Run once before first use of the other engineering skills."
 disable-model-invocation: true
 ---
 
@@ -11,6 +11,7 @@ Scaffold the per-repo configuration that the engineering skills assume:
 - **Issue tracker**: where issues live (GitHub by default; local markdown is also supported out of the box)
 - **Domain docs**: where `GLOSSARY.md` and ADRs live, and the consumer rules for reading them
 - **Test runner** (.NET repos only): a root `test.sh` that agents run instead of `dotnet test`, for a short command and short output
+- **Style pass** (.NET repos only): a root `format.sh` that `code-review` runs to apply the repo's `.editorconfig` before reviewing, so style rules stay out of the implementing agent's loop
 
 This is a prompt-driven skill, not a deterministic script. Explore, present what you found, confirm with the user, then write.
 
@@ -27,6 +28,7 @@ Look at the current repo to understand its starting state. Read whatever exists;
 - `docs/agents/`: does this skill's prior output already exist?
 - `.scratch/`: a sign that a local-markdown issue tracker convention is already in use
 - .NET test signals: test projects (`.csproj` files that hold tests, not helper libraries such as `TestUtils` or `Fixtures`), whether `global.json` sets `test.runner` to `Microsoft.Testing.Platform`, and whether a `test.sh` already exists at the repo root
+- .NET style signals: the `*.sln` / `*.slnx` files at the repo root, whether a root `.editorconfig` exists, and whether a `format.sh` already exists at the repo root
 - Monorepo signals: a `pnpm-workspace.yaml`, a `workspaces` field in `package.json`, or a populated `packages/*` with its own `src/`. These are present only in a genuinely large multi-package repo; their absence means single-context, which is almost every repo.
 
 ### 2. Present findings and ask
@@ -66,6 +68,16 @@ If a root `test.sh` already exists:
 - It has a `TEST_PROJECTS` block: it is this skill's earlier output. Keep its entries as the proposal and say the rest of the script will be refreshed from the template.
 - It has none: it is someone else's script. Ask before replacing it.
 
+**Section D: Style pass.** Skip this section without mentioning it when the repo has no `.csproj` files.
+
+> Explainer: `format.sh` runs `dotnet format`, then builds with every analyzer and IDE style rule on and prints only what is left to fix by hand. `code-review` runs it before reviewing and again after the fixes, so the agents writing the code never see the style rules.
+
+The script needs exactly one `*.sln` or `*.slnx` at the repo root. If there is none, or more than one, say so, don't write the script, and move on.
+
+The script only enforces what `.editorconfig` sets. If the repo has no root `.editorconfig`, say the pass will enforce only the SDK defaults, and ask whether to write the script anyway. Either way, mention that an editorconfig option with no severity, such as `csharp_style_var_when_type_is_apparent = true`, is enforced only once it gets one: `= true:warning`, or a `dotnet_diagnostic.<rule>.severity` line.
+
+If a root `format.sh` already exists, look at its header. When it says this skill wrote it, say it will be refreshed from the template. Otherwise it is someone else's script: ask before replacing it.
+
 ### 3. Confirm and edit
 
 Show the user a draft of:
@@ -73,6 +85,7 @@ Show the user a draft of:
 - The `## Agent skills` block to add to whichever of `CLAUDE.md` / `AGENTS.md` is being edited (see step 4 for selection rules)
 - The contents of `docs/agents/issue-tracker.md` and `docs/agents/domain.md`
 - The targets and project paths for `test.sh`, when Section C applies
+- Whether `format.sh` will be written, when Section D applies
 
 Let them edit before writing.
 
@@ -124,6 +137,14 @@ For "other" issue trackers, write `docs/agents/issue-tracker.md` from scratch us
 4. Make sure `.gitattributes` gives shell scripts LF line endings (`*.sh text eol=lf`); add the line if it's missing.
 5. Run `./test.sh` with no arguments and check that the usage line lists the targets. Then run the fastest target once, usually `unit`, and report the result. Don't start infrastructure to run the others.
 
+**Style pass** (only when Section D applies):
+
+1. Copy [format.sh](./format.sh) from this skill folder to the repo root. Change nothing in it.
+2. Make it executable and give shell scripts LF line endings, as in steps 3 and 4 for `test.sh`.
+3. Run `./format.sh` once to check the baseline. The script formats the whole solution, so the repo must already pass it: otherwise the first review would pull a repo-wide cleanup into its branch. When it changes files or exits non-zero, revert its changes, report the counts, and recommend a cleanup in a commit of its own, listed in `.git-blame-ignore-revs`, before the first review. Don't do the cleanup unasked.
+
+Don't mention `format.sh` in the `## Agent skills` block. Only `code-review` runs it, and keeping it out of always-loaded instructions is the point.
+
 ### 5. Done
 
-Tell the user the setup is complete and which engineering skills will now read from these files. Mention they can edit `docs/agents/*.md` directly later; re-running this skill is only necessary if they want to switch issue trackers, restart from scratch, or refresh `test.sh` after this skill was updated.
+Tell the user the setup is complete and which engineering skills will now read from these files. Mention they can edit `docs/agents/*.md` directly later; re-running this skill is only necessary if they want to switch issue trackers, restart from scratch, or refresh `test.sh` or `format.sh` after this skill was updated.

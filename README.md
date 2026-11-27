@@ -69,13 +69,15 @@ See the [APM docs](https://microsoft.github.io/apm/) for everything else.
 > [!NOTE]
 > Run `/setup-akilin-skills` once per repo before using the other skills in this pack. It configures the issue tracker (GitHub or local files) and the domain doc layout they rely on.
 >
-> In .NET repos that use the Microsoft.Testing.Platform runner, it also writes a `test.sh` at the repo root and tells agents to run tests through it instead of `dotnet test`: a short command, no output on success and trimmed output on failure. Re-run the skill to refresh the script after an update.
+> In .NET repos that use the Microsoft.Testing.Platform runner, it also writes a `test.sh` at the repo root and tells agents to run tests through it instead of `dotnet test`: a short command, no output on success and trimmed output on failure. In .NET repos with one solution file at the root, it also writes a `format.sh` that `code-review` runs before and after the review: it applies the repo's `.editorconfig` and reports what's left to fix by hand, so style rules stay out of the implementing agent's loop.
+>
+> Re-run the skill to refresh these scripts after an update.
 
 **Skills** (install path: `akilin/agents/skills/engineering/<name>`)
 
 | Name | What it does |
 |---|---|
-| `setup-akilin-skills` | Run `/setup-akilin-skills` to configure the repo's issue tracker and domain doc layout for this pack, and to add a token-efficient `test.sh` test runner to .NET repos. |
+| `setup-akilin-skills` | Run `/setup-akilin-skills` to configure the repo's issue tracker and domain doc layout for this pack, and to add a token-efficient `test.sh` test runner and a `format.sh` style pass to .NET repos. |
 | `grill-with-docs` | Run `/grill-with-docs` to be interviewed about a plan or design, writing ADRs and glossary entries as you go. |
 | `domain-modeling` | Builds and sharpens the domain model: codebase terminology, `GLOSSARY.md` and ADRs. |
 | `codebase-design` | Shared vocabulary for designing deep modules: interfaces, seams, testability. |
@@ -87,7 +89,7 @@ See the [APM docs](https://microsoft.github.io/apm/) for everything else.
 | `implement` | Run `/implement` to implement a piece of work from a spec or set of tickets. |
 | `implement-spec` | Run `/implement-spec` to implement the output of `/to-spec` and `/to-tickets`. |
 | `tdd` | Test-driven development for features and bug fixes: a red → green loop with the failing test first, at seams agreed with you. Refactoring is left to review. |
-| `code-review` | Reviews changes since a commit, branch or tag against the repo's coding standards, a baseline of Fowler code smells, built-in .NET style preferences and the originating spec. |
+| `code-review` | Reviews changes since a commit, branch or tag against the repo's coding standards, a baseline of Fowler code smells, built-in .NET style preferences and the originating spec. In repos with `format.sh`, it applies the `.editorconfig` before reviewing and again after the fixes. |
 | `retro` | Run `/retro` to hold a retrospective on a coding session. |
 
 **Instructions** (install path: `akilin/agents/instructions/engineering/<name>.instructions.md`)
