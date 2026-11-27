@@ -2,6 +2,8 @@
 
 Issues and specs for this repo live as markdown files in `.scratch/`.
 
+`.scratch/` is temporary: it gets deleted some time after the work is done, so nothing in it lasts. Move anything that should outlive the work into a durable place: domain terms into `GLOSSARY.md`, and decisions that meet the `/domain-modeling` ADR criteria into `docs/adr/` (offer these; don't create them unasked).
+
 ## Conventions
 
 - One feature per directory: `.scratch/<feature-slug>/`
