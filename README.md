@@ -18,7 +18,7 @@ dependencies:
     - akilin/agents/packs/general
     # Engineering workflow skills: specs, tickets, TDD, review and more, plus code comment and TDD rules
     - akilin/agents/packs/engineering
-    # .NET conventions: 4 instructions and a testing skill
+    # .NET conventions: 4 .NET instructions and a testing skill, plus the code comment and TDD rules
     - akilin/agents/packs/dotnet
 ```
 
@@ -79,6 +79,7 @@ See the [APM docs](https://microsoft.github.io/apm/) for everything else.
 | `grill-with-docs` | Run `/grill-with-docs` to be interviewed about a plan or design, writing ADRs and glossary entries as you go. |
 | `domain-modeling` | Builds and sharpens the domain model: codebase terminology, `GLOSSARY.md` and ADRs. |
 | `codebase-design` | Shared vocabulary for designing deep modules: interfaces, seams, testability. |
+| `create-design-system` | Run `/create-design-system <screenshots>` to derive design tokens and component primitives from screenshots, shown as a style guide page. |
 | `prototype` | Builds a throwaway prototype to answer a design question about logic or UI. |
 | `research` | Investigates a question against primary sources and saves the findings as Markdown in the repo. |
 | `to-spec` | Run `/to-spec` to turn the current conversation into a spec on the issue tracker. |
@@ -86,7 +87,7 @@ See the [APM docs](https://microsoft.github.io/apm/) for everything else.
 | `implement` | Run `/implement` to implement a piece of work from a spec or set of tickets. |
 | `implement-spec` | Run `/implement-spec` to implement the output of `/to-spec` and `/to-tickets`. |
 | `tdd` | Test-driven development for features and bug fixes: a red → green loop with the failing test first, at seams agreed with you. Refactoring is left to review. |
-| `code-review` | Reviews changes since a commit, branch or tag against the repo's coding standards, built-in style preferences per language (general, .NET, JavaScript/TypeScript) and the originating spec. |
+| `code-review` | Reviews changes since a commit, branch or tag against the repo's coding standards, a baseline of Fowler code smells, built-in .NET style preferences and the originating spec. |
 | `retro` | Run `/retro` to hold a retrospective on a coding session. |
 
 **Instructions** (install path: `akilin/agents/instructions/engineering/<name>.instructions.md`)
@@ -101,7 +102,7 @@ See the [APM docs](https://microsoft.github.io/apm/) for everything else.
 `akilin/agents/packs/dotnet` installs all of the items below.
 
 > [!NOTE]
-> This pack assumes my own conventions: central package management via `Directory.Packages.props` in multi-project solutions, shared settings in `Directory.Build.props`, a `$(RepoRoot)` MSBuild property for project references, NodaTime for dates and times, EF Core with `Restrict` as the default delete behaviour, and xUnit, Moq and FluentAssertions-style assertions for tests.
+> This pack assumes my own conventions: central package management via `Directory.Packages.props` in multi-project solutions, shared settings in `Directory.Build.props`, a `$(RepoRoot)` MSBuild property for project references, NodaTime for dates and times, EF Core with `ClientNoAction` as the default delete behaviour, and xUnit, Moq and FluentAssertions-style assertions for tests.
 
 **Skills** (install path: `akilin/agents/skills/dotnet/<name>`)
 
@@ -119,6 +120,14 @@ See the [APM docs](https://microsoft.github.io/apm/) for everything else.
 | `dotnet-efcore` | `**/*.cs` | Entity configuration via `IEntityTypeConfiguration<T>` classes instead of attributes. Explicit `Cascade`/`SetNull` over a `ClientNoAction` default. |
 
 The pack also installs the [`code-comments` and `tdd`](#engineering-pack) instructions from the engineering pack.
+
+### Standalone skills
+
+These are not part of any pack. Install them by path.
+
+| Name | What it does | Install path |
+|---|---|---|
+| `jira` | Loads a Jira ticket (fields, comments, linked items, attachments) or lists current-sprint tickets assigned to you or unassigned, via the Atlassian CLI (`acli`). Triggers when you name a ticket key such as `PROJ-123`; it is not a `/` command. Needs `acli` installed and logged in. | `akilin/agents/skills/misc/jira` |
 
 ## Credits
 

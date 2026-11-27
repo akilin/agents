@@ -7,6 +7,7 @@ dependencies:
     - ../../instructions/engineering/tdd.instructions.md
     - ../../skills/engineering/code-review
     - ../../skills/engineering/codebase-design
+    - ../../skills/engineering/create-design-system
     - ../../skills/engineering/domain-modeling
     - ../../skills/engineering/grill-with-docs
     - ../../skills/engineering/implement-spec
